@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pdv_flutter/modules/products/data/product_repository.dart';
-import '../../../core/l10n/strings.dart';
+import '../../../../core/l10n/strings.dart';
 
 class ProductsPage extends StatefulWidget {
   const ProductsPage({Key? key}) : super(key: key);
