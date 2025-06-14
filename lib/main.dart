@@ -1,32 +1,49 @@
 import 'package:flutter/material.dart';
-import 'package:pdv_flutter/core/l10n/strings.dart';
+import 'package:pdv_flutter/modules/auth/ui/login_page.dart';
 import 'package:pdv_flutter/modules/home/ui/home_page.dart';
-import 'package:sqflite_common_ffi/sqflite_ffi.dart';
-import 'modules/auth/ui/login_page.dart';
 
 void main() {
-  sqfliteFfiInit();
-  databaseFactory = databaseFactoryFfi;
-
-  runApp(const MyApp());
+  runApp(const TopedindoPDVApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class TopedindoPDVApp extends StatefulWidget {
+  const TopedindoPDVApp({super.key});
+
+  @override
+  State<TopedindoPDVApp> createState() => _TopedindoPDVAppState();
+}
+
+class _TopedindoPDVAppState extends State<TopedindoPDVApp> {
+  ThemeMode _themeMode = ThemeMode.system;
+
+  void _toggleThemeMode() {
+    setState(() {
+      _themeMode = _themeMode == ThemeMode.dark
+          ? ThemeMode.light
+          : ThemeMode.dark;
+    });
+  }
+
+  void _setThemeMode(ThemeMode mode) {
+    setState(() {
+      _themeMode = mode;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: Strings.systemTitle,
+      title: 'Topedindo PDV Fiscal',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
+      theme: ThemeData.light(useMaterial3: true),
+      darkTheme: ThemeData.dark(useMaterial3: true),
+      themeMode: _themeMode,
       initialRoute: '/',
       routes: {
-        '/': (context) => const LoginPage(),
-        '/home': (context) => const HomePage(),
+        '/': (context) =>
+            LoginPage(themeMode: _themeMode, onThemeToggle: _toggleThemeMode),
+        '/home': (context) =>
+            HomePage(themeMode: _themeMode, onThemeModeChanged: _setThemeMode),
       },
     );
   }
