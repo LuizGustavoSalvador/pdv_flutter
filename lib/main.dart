@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pdv_flutter/app/core/l10n/app_localizations.dart';
 import 'package:pdv_flutter/app/features/auth/presentation/pages/login_page.dart';
 import 'package:pdv_flutter/app/features/home/presentation/pages/home_page.dart';
 
@@ -33,8 +34,13 @@ class _TopedindoPDVAppState extends State<TopedindoPDVApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Topedindo PDV Fiscal',
+      onGenerateTitle: (context) {
+        return AppLocalizations.of(context)!.systemTitle;
+      },
+
       debugShowCheckedModeBanner: false,
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
       theme: ThemeData.light(useMaterial3: true),
       darkTheme: ThemeData.dark(useMaterial3: true),
       themeMode: _themeMode,

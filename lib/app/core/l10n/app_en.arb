@@ -1,0 +1,56 @@
+{
+    "@@locale": "en",
+
+    "loginButton": "Login",
+    "exit": "Exit",
+    "yes": "Yes",
+    "no": "No",
+    "confirmation": "Confirmation",
+    "darkMode": "Dark Mode",
+    "lightMode": "Light Mode",
+    "systemMode": "Follow System",
+    "cancel": "Cancel",
+
+    "unknownError": "An unexpected error occurred.",
+
+    "systemTitle": "Topedindo Fiscal POS",
+    "loginTitle": "Login",
+    "loginError": "Invalid username or password!",
+    "loginSuccess": "Welcome!",
+    "password": "Password",
+    "requiredLoginFields": "Please enter a username",
+    "requiredPasswordFields": "Please enter a password",
+
+    "logoutConfirmText": "Do you really want to log out?",
+
+    "homeTitle": "Home",
+
+    "checkoutTitle": "Cart",
+    "checkoutError": "An error occurred while finalizing the order.",
+    "checkoutSuccess": "Order completed successfully!",
+    "subtotal": "Subtotal",
+    "total": "Total",
+    "paymentMethod": "Payment Methods",
+    "addPaymentMethod": "Add payment method",
+    "value": "Value",
+    "insertValue": "Enter the value",
+    "valueExceedsTotal": "The entered value exceeds the total",
+    "totalPaid": "Total paid",
+    "change": "Change",
+    "totalFault": "Remaining amount",
+    "finalizeSale": "Finalize Sale",
+    "emptyCart": "The cart is empty",
+
+    "productsTitle": "Products",
+    "addProduct": "Add Product",
+    "editProduct": "Edit Product",
+    "deleteProduct": "Delete Product",
+    "confirmDeleteProduct": "Are you sure you want to delete this product?",
+    "productSaved": "Product saved successfully!",
+    "productDeleted": "Product deleted successfully!",
+    "productError": "An error occurred while saving the product.",
+
+    "ordersTitle": "Orders",
+
+    "settingsTitle": "Settings"
+}
