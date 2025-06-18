@@ -1,0 +1,8 @@
+# Diz onde estão seus arquivos de tradução (.arb)
+arb-dir: lib/app/core/l10n
+
+# O nome do arquivo que será usado como base/molde.
+template-arb-file: app_en.arb
+
+# O nome do arquivo Dart que será gerado automaticamente.
+output-localization-file: app_localizations.dart

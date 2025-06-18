@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:pdv_flutter/modules/auth/ui/login_page.dart';
-import 'package:pdv_flutter/modules/home/ui/home_page.dart';
+import 'package:pdv_flutter/app/features/auth/presentation/pages/login_page.dart';
+import 'package:pdv_flutter/app/features/home/presentation/pages/home_page.dart';
 
 void main() {
   runApp(const TopedindoPDVApp());
