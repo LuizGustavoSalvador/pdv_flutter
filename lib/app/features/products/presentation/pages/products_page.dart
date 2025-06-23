@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:pdv_flutter/app/core/l10n/app_localizations.dart';
 import 'package:pdv_flutter/app/features/products/data/product_repository.dart';
-import '../../../../core/l10n/strings.dart';
 
 class ProductsPage extends StatefulWidget {
   const ProductsPage({Key? key}) : super(key: key);
@@ -24,18 +24,22 @@ class _ProductsPageState extends State<ProductsPage> {
   }
 
   Future<void> _addProduct() async {
+    final l10n = AppLocalizations.of(context)!;
+
     await ProductRepository().insertProduct('Novo Produto', 10.0);
     await _loadProducts();
     if (!mounted) return;
     ScaffoldMessenger.of(
       context,
-    ).showSnackBar(SnackBar(content: Text(Strings.productSaved)));
+    ).showSnackBar(SnackBar(content: Text(l10n.productSaved)));
   }
 
   @override
   Widget build(BuildContext context) {
+    final l10n = AppLocalizations.of(context)!;
+
     return Scaffold(
-      appBar: AppBar(title: Text(Strings.productsTitle)),
+      appBar: AppBar(title: Text(l10n.productsTitle)),
       body: ListView.builder(
         itemCount: products.length,
         itemBuilder: (_, i) => ListTile(
@@ -49,13 +53,13 @@ class _ProductsPageState extends State<ProductsPage> {
               if (!mounted) return;
               ScaffoldMessenger.of(
                 context,
-              ).showSnackBar(SnackBar(content: Text(Strings.productDeleted)));
+              ).showSnackBar(SnackBar(content: Text(l10n.productDeleted)));
             },
           ),
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        tooltip: Strings.addProduct,
+        tooltip: l10n.addProduct,
         onPressed: _addProduct,
         child: const Icon(Icons.add),
       ),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pdv_flutter/app/core/enums/home_section_enum.dart';
-import 'package:pdv_flutter/app/core/l10n/strings.dart';
+import 'package:pdv_flutter/app/core/l10n/app_localizations.dart';
 
 class HomeMenu extends StatelessWidget {
   final HomeSection currentSection;
@@ -14,20 +14,23 @@ class HomeMenu extends StatelessWidget {
     required this.onLogout,
   });
 
-  Future<void> _confirmLogout(BuildContext context) async {
+  Future<void> _confirmLogout(
+    BuildContext context,
+    AppLocalizations l10n,
+  ) async {
     final result = await showDialog<bool>(
       context: context,
       builder: (ctx) => AlertDialog(
-        title: const Text(Strings.confirmation),
-        content: const Text(Strings.logoutConfirmText),
+        title: Text(l10n.confirmation),
+        content: Text(l10n.logoutConfirmText),
         actions: [
           TextButton(
             onPressed: () => Navigator.of(ctx).pop(false),
-            child: const Text(Strings.no),
+            child: Text(l10n.no),
           ),
           ElevatedButton(
             onPressed: () => Navigator.of(ctx).pop(true),
-            child: const Text(Strings.yes),
+            child: Text(l10n.yes),
           ),
         ],
       ),
@@ -41,39 +44,39 @@ class HomeMenu extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Índice do botão "Sair" (o último)
     final logoutIndex = HomeSection.values.length;
+    final l10n = AppLocalizations.of(context)!;
 
     return NavigationRail(
       selectedIndex: currentSection.index,
       onDestinationSelected: (int index) {
         if (index == logoutIndex) {
-          _confirmLogout(context);
+          _confirmLogout(context, l10n);
         } else {
           onSectionChanged(HomeSection.values[index]);
         }
       },
       labelType: NavigationRailLabelType.all,
-      destinations: const [
+      destinations: [
         NavigationRailDestination(
           icon: Icon(Icons.dashboard),
-          label: Text('Início'),
+          label: Text(l10n.homeTitle),
         ),
         NavigationRailDestination(
           icon: Icon(Icons.store),
-          label: Text('Produtos'),
+          label: Text(l10n.productsTitle),
         ),
         NavigationRailDestination(
           icon: Icon(Icons.receipt),
-          label: Text('Pedidos'),
+          label: Text(l10n.ordersTitle),
         ),
         NavigationRailDestination(
           icon: Icon(Icons.settings),
-          label: Text('Configurações'),
+          label: Text(l10n.settingsTitle),
         ),
         NavigationRailDestination(
           icon: Icon(Icons.logout),
-          label: Text('Sair'),
+          label: Text(l10n.exit),
         ),
       ],
     );

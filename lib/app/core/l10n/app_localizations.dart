@@ -168,8 +168,14 @@ abstract class AppLocalizations {
   /// No description provided for @loginTitle.
   ///
   /// In en, this message translates to:
-  /// **'Login'**
+  /// **'E-mail'**
   String get loginTitle;
+
+  /// No description provided for @loginSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Welcome! Please log in to continue.'**
+  String get loginSubtitle;
 
   /// No description provided for @loginError.
   ///
@@ -192,7 +198,7 @@ abstract class AppLocalizations {
   /// No description provided for @requiredLoginFields.
   ///
   /// In en, this message translates to:
-  /// **'Please enter a username'**
+  /// **'Please enter your email'**
   String get requiredLoginFields;
 
   /// No description provided for @requiredPasswordFields.
@@ -200,6 +206,60 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Please enter a password'**
   String get requiredPasswordFields;
+
+  /// No description provided for @rememberEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Remember email'**
+  String get rememberEmail;
+
+  /// No description provided for @forgotPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Forgot password?'**
+  String get forgotPassword;
+
+  /// No description provided for @forgotPasswordPageTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Recover Password'**
+  String get forgotPasswordPageTitle;
+
+  /// No description provided for @forgotPasswordSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter your email to receive a password reset link.'**
+  String get forgotPasswordSubtitle;
+
+  /// No description provided for @sendResetLinkButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Send Reset Link'**
+  String get sendResetLinkButton;
+
+  /// No description provided for @forgotPasswordEmailLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Your Email'**
+  String get forgotPasswordEmailLabel;
+
+  /// No description provided for @invalidEmailFormat.
+  ///
+  /// In en, this message translates to:
+  /// **'Please enter a valid email address.'**
+  String get invalidEmailFormat;
+
+  /// No description provided for @resetLinkSentSuccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Password reset link sent to your email!'**
+  String get resetLinkSentSuccess;
+
+  /// No description provided for @resetLinkError.
+  ///
+  /// In en, this message translates to:
+  /// **'Failed to send reset link. Please try again.'**
+  String get resetLinkError;
 
   /// No description provided for @logoutConfirmText.
   ///

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:pdv_flutter/app/core/enums/payment_type_enum.dart';
-import 'package:pdv_flutter/app/core/l10n/strings.dart';
+import 'package:pdv_flutter/app/core/l10n/app_localizations.dart';
 
 class PaymentForm {
   PaymentType type;
@@ -156,7 +156,7 @@ class _HomeCheckoutState extends State<HomeCheckout> {
     });
   }
 
-  void _updatePaymentType(int idx, PaymentType type) {
+  void _updatePaymentType(int idx, PaymentType type, AppLocalizations l10n) {
     setState(() {
       payments[idx].type = type;
       final valueLeft = subtotal - _otherPaymentsSum(idx);
@@ -166,7 +166,7 @@ class _HomeCheckoutState extends State<HomeCheckout> {
             ? ''
             : payments[idx].value.toStringAsFixed(2).replaceAll('.', ',');
       }
-      _validatePayment(idx);
+      _validatePayment(idx, l10n);
     });
   }
 
@@ -178,7 +178,7 @@ class _HomeCheckoutState extends State<HomeCheckout> {
         .fold(0.0, (s, e) => s + e.value.value);
   }
 
-  void _onChangedValue(int idx, String v) {
+  void _onChangedValue(int idx, String v, AppLocalizations l10n) {
     setState(() {
       String sanitized = v
           .replaceAll('.', '')
@@ -188,12 +188,12 @@ class _HomeCheckoutState extends State<HomeCheckout> {
       double value = double.tryParse(sanitized) ?? 0.0;
       payments[idx].value = value;
       for (int i = 0; i < payments.length; i++) {
-        _validatePayment(i);
+        _validatePayment(i, l10n);
       }
     });
   }
 
-  void _validatePayment(int idx) {
+  void _validatePayment(int idx, AppLocalizations l10n) {
     final type = payments[idx].type;
     final value = payments[idx].value;
 
@@ -202,11 +202,11 @@ class _HomeCheckoutState extends State<HomeCheckout> {
         : subtotal - _otherPaymentsSum(idx);
 
     if (value == 0) {
-      _errors[idx] = Strings.insertValue;
+      _errors[idx] = l10n.insertValue;
     } else if (type != PaymentType.cash && value > maxAllowed) {
       _errors[idx] = 'Valor informado excede o valor total do pedido';
     } else if (value < 0) {
-      _errors[idx] = Strings.insertValue;
+      _errors[idx] = l10n.insertValue;
     } else {
       _errors[idx] = null;
     }
@@ -226,6 +226,7 @@ class _HomeCheckoutState extends State<HomeCheckout> {
   @override
   Widget build(BuildContext context) {
     final bool cartIsEmpty = widget.cartItems.isEmpty;
+    final l10n = AppLocalizations.of(context)!;
 
     return Container(
       width: 400,
@@ -253,10 +254,10 @@ class _HomeCheckoutState extends State<HomeCheckout> {
                               : Icons.brightness_6,
                         ),
                         tooltip: widget.themeMode == ThemeMode.dark
-                            ? Strings.lightMode
+                            ? l10n.lightMode
                             : widget.themeMode == ThemeMode.light
-                            ? Strings.darkMode
-                            : Strings.systemMode,
+                            ? l10n.darkMode
+                            : l10n.systemMode,
                         onPressed: () {
                           ThemeMode nextMode;
                           if (widget.themeMode == ThemeMode.system) {
@@ -271,7 +272,7 @@ class _HomeCheckoutState extends State<HomeCheckout> {
                       ),
                     ),
                     Text(
-                      Strings.checkoutTitle,
+                      l10n.checkoutTitle,
                       style: Theme.of(context).textTheme.titleLarge,
                     ),
                     const Divider(),
@@ -292,7 +293,7 @@ class _HomeCheckoutState extends State<HomeCheckout> {
                               child: Padding(
                                 padding: const EdgeInsets.all(24.0),
                                 child: Text(
-                                  Strings.emptyCart,
+                                  l10n.emptyCart,
                                   style: TextStyle(
                                     color: Theme.of(context)
                                         .colorScheme
@@ -351,13 +352,13 @@ class _HomeCheckoutState extends State<HomeCheckout> {
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 4.0),
                       child: Text(
-                        '${Strings.subtotal}: ${currencyFormat.format(subtotal)}',
+                        '${l10n.subtotal}: ${currencyFormat.format(subtotal)}',
                         style: Theme.of(context).textTheme.titleMedium,
                       ),
                     ),
                     const Divider(),
                     Text(
-                      Strings.paymentMethod,
+                      l10n.paymentMethod,
                       style: Theme.of(context).textTheme.titleSmall,
                     ),
                     const SizedBox(height: 8),
@@ -385,7 +386,7 @@ class _HomeCheckoutState extends State<HomeCheckout> {
                                     ? null
                                     : (val) {
                                         if (val != null) {
-                                          _updatePaymentType(idx, val);
+                                          _updatePaymentType(idx, val, l10n);
                                         }
                                       },
                               ),
@@ -400,7 +401,7 @@ class _HomeCheckoutState extends State<HomeCheckout> {
                                     enabled: !cartIsEmpty,
                                     decoration: InputDecoration(
                                       isDense: true,
-                                      labelText: Strings.value,
+                                      labelText: l10n.value,
                                       prefixText: 'R\$ ',
                                       errorText: _errors[idx],
                                       errorMaxLines: 2,
@@ -414,7 +415,8 @@ class _HomeCheckoutState extends State<HomeCheckout> {
                                         const TextInputType.numberWithOptions(
                                           decimal: true,
                                         ),
-                                    onChanged: (v) => _onChangedValue(idx, v),
+                                    onChanged: (v) =>
+                                        _onChangedValue(idx, v, l10n),
                                   ),
                                   if (_errors[idx] == null)
                                     const SizedBox(height: 32),
@@ -439,23 +441,23 @@ class _HomeCheckoutState extends State<HomeCheckout> {
                           ? null
                           : _addPayment,
                       icon: const Icon(Icons.add),
-                      label: const Text(Strings.addPaymentMethod),
+                      label: Text(l10n.addPaymentMethod),
                     ),
                     const Divider(),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          '${Strings.totalPaid}: ${currencyFormat.format(totalPaid)}',
+                          '${l10n.totalPaid}: ${currencyFormat.format(totalPaid)}',
                         ),
                         if (change > 0)
                           Text(
-                            '${Strings.change}: ${currencyFormat.format(change)}',
+                            '${l10n.change}: ${currencyFormat.format(change)}',
                             style: const TextStyle(color: Colors.green),
                           ),
                         if (remaining > 0)
                           Text(
-                            '${Strings.totalFault}: ${currencyFormat.format(remaining)}',
+                            '${l10n.totalFault}: ${currencyFormat.format(remaining)}',
                             style: const TextStyle(color: Colors.red),
                           ),
                       ],
@@ -475,7 +477,7 @@ class _HomeCheckoutState extends State<HomeCheckout> {
                                 ),
                               ),
                               onPressed: cartIsEmpty ? null : _resetCheckout,
-                              child: const Text(Strings.cancel),
+                              child: Text(l10n.cancel),
                             ),
                           ),
                           const SizedBox(width: 12),
@@ -512,7 +514,7 @@ class _HomeCheckoutState extends State<HomeCheckout> {
                                       }
                                     }
                                   : null,
-                              child: const Text(Strings.finalizeSale),
+                              child: Text(l10n.finalizeSale),
                             ),
                           ),
                         ],

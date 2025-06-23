@@ -57,7 +57,37 @@ class SqliteConnectionFactory {
     )
   ''');
 
-    // Adicione aqui outros 'CREATE TABLE' para produtos, vendas, etc.
+    // Tabela de Vendas
+    await db.execute('''
+      CREATE TABLE sales (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        total REAL NOT NULL,
+        created_at TEXT NOT NULL,
+        status TEXT NOT NULL CHECK(status IN ('PENDING_SYNC', 'EMITTED', 'ERROR'))
+      )
+    ''');
+
+    // Tabela de Itens da Venda
+    await db.execute('''
+      CREATE TABLE sale_items (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        sale_id INTEGER NOT NULL,
+        product_id INTEGER NOT NULL,
+        quantity INTEGER NOT NULL,
+        price REAL NOT NULL,
+        FOREIGN KEY (sale_id) REFERENCES sales (id)
+      )
+    ''');
+
+    // Tabela de Produtos
+    await db.execute('''
+      CREATE TABLE products (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        name TEXT NOT NULL,
+        price REAL NOT NULL,
+        barcode TEXT
+      )
+    ''');
   }
 
   // Chamado quando você incrementa o databaseVersion.

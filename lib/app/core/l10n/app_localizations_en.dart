@@ -42,7 +42,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get systemTitle => 'Topedindo Fiscal POS';
 
   @override
-  String get loginTitle => 'Login';
+  String get loginTitle => 'E-mail';
+
+  @override
+  String get loginSubtitle => 'Welcome! Please log in to continue.';
 
   @override
   String get loginError => 'Invalid username or password!';
@@ -54,10 +57,38 @@ class AppLocalizationsEn extends AppLocalizations {
   String get password => 'Password';
 
   @override
-  String get requiredLoginFields => 'Please enter a username';
+  String get requiredLoginFields => 'Please enter your email';
 
   @override
   String get requiredPasswordFields => 'Please enter a password';
+
+  @override
+  String get rememberEmail => 'Remember email';
+
+  @override
+  String get forgotPassword => 'Forgot password?';
+
+  @override
+  String get forgotPasswordPageTitle => 'Recover Password';
+
+  @override
+  String get forgotPasswordSubtitle =>
+      'Enter your email to receive a password reset link.';
+
+  @override
+  String get sendResetLinkButton => 'Send Reset Link';
+
+  @override
+  String get forgotPasswordEmailLabel => 'Your Email';
+
+  @override
+  String get invalidEmailFormat => 'Please enter a valid email address.';
+
+  @override
+  String get resetLinkSentSuccess => 'Password reset link sent to your email!';
+
+  @override
+  String get resetLinkError => 'Failed to send reset link. Please try again.';
 
   @override
   String get logoutConfirmText => 'Do you really want to log out?';

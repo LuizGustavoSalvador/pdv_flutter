@@ -42,7 +42,10 @@ class AppLocalizationsPt extends AppLocalizations {
   String get systemTitle => 'Topedindo PDV Fiscal';
 
   @override
-  String get loginTitle => 'Login';
+  String get loginTitle => 'E-mail';
+
+  @override
+  String get loginSubtitle => 'Bem-vindo! Faça o login para continuar.';
 
   @override
   String get loginError => 'Login ou senha inválidos!';
@@ -54,10 +57,41 @@ class AppLocalizationsPt extends AppLocalizations {
   String get password => 'Senha';
 
   @override
-  String get requiredLoginFields => 'Informe o usuário';
+  String get requiredLoginFields => 'Informe o seu e-mail';
 
   @override
   String get requiredPasswordFields => 'Informe a senha';
+
+  @override
+  String get rememberEmail => 'Lembrar e-mail';
+
+  @override
+  String get forgotPassword => 'Esqueceu a senha?';
+
+  @override
+  String get forgotPasswordPageTitle => 'Recuperar Senha';
+
+  @override
+  String get forgotPasswordSubtitle =>
+      'Informe seu e-mail para receber um link de redefinição de senha.';
+
+  @override
+  String get sendResetLinkButton => 'Enviar Link de Redefinição';
+
+  @override
+  String get forgotPasswordEmailLabel => 'Seu E-mail';
+
+  @override
+  String get invalidEmailFormat =>
+      'Por favor, insira um endereço de e-mail válido.';
+
+  @override
+  String get resetLinkSentSuccess =>
+      'Link de redefinição de senha enviado para o seu e-mail!';
+
+  @override
+  String get resetLinkError =>
+      'Falha ao enviar link de redefinição. Por favor, tente novamente.';
 
   @override
   String get logoutConfirmText => 'Deseja realmente sair do sistema?';
@@ -180,7 +214,10 @@ class AppLocalizationsPtBr extends AppLocalizationsPt {
   String get systemTitle => 'Topedindo PDV Fiscal';
 
   @override
-  String get loginTitle => 'Login';
+  String get loginTitle => 'E-mail';
+
+  @override
+  String get loginSubtitle => 'Bem-vindo! Faça o login para continuar.';
 
   @override
   String get loginError => 'Login ou senha inválidos!';
@@ -192,10 +229,41 @@ class AppLocalizationsPtBr extends AppLocalizationsPt {
   String get password => 'Senha';
 
   @override
-  String get requiredLoginFields => 'Informe o usuário';
+  String get requiredLoginFields => 'Informe o seu e-mail';
 
   @override
   String get requiredPasswordFields => 'Informe a senha';
+
+  @override
+  String get rememberEmail => 'Lembrar e-mail';
+
+  @override
+  String get forgotPassword => 'Esqueceu a senha?';
+
+  @override
+  String get forgotPasswordPageTitle => 'Recuperar Senha';
+
+  @override
+  String get forgotPasswordSubtitle =>
+      'Informe seu e-mail para receber um link de redefinição de senha.';
+
+  @override
+  String get sendResetLinkButton => 'Enviar Link de Redefinição';
+
+  @override
+  String get forgotPasswordEmailLabel => 'Seu E-mail';
+
+  @override
+  String get invalidEmailFormat =>
+      'Por favor, insira um endereço de e-mail válido.';
+
+  @override
+  String get resetLinkSentSuccess =>
+      'Link de redefinição de senha enviado para o seu e-mail!';
+
+  @override
+  String get resetLinkError =>
+      'Falha ao enviar link de redefinição. Por favor, tente novamente.';
 
   @override
   String get logoutConfirmText => 'Deseja realmente sair do sistema?';
